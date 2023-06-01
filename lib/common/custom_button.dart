@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
           style: const TextStyle(
             fontFamily: "Inter",
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),

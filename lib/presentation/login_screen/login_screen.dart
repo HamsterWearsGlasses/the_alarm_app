@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_alarm_app/common/custom_button.dart';
 import 'package:the_alarm_app/common/custom_field.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
@@ -89,6 +90,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: AppColor.textColor),
                 ),
               ),
+              const SizedBox(
+                height: 56,
+              ),
+              CustomButton(
+                textButton: "Signin",
+                onPressed: () {},
+              ),
+              const SizedBox(
+                height: 48,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 154,
+                    child: Divider(
+                      thickness: 1,
+                      color: AppColor.textColor,
+                      indent: 16,
+                      endIndent: 16,
+                    ),
+                  ),
+                  Text(
+                    "Or",
+                    style: TextStyle(
+                        fontFamily: "Oxygen",
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: AppColor.textColor),
+                  ),
+                  SizedBox(
+                    width: 154,
+                    child: Divider(
+                      thickness: 1,
+                      color: AppColor.textColor,
+                      indent: 16,
+                      endIndent: 16,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
