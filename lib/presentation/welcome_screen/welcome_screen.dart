@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
-import 'package:the_alarm_app/presentation/welcome_screen/custom_text_button.dart';
+import 'package:the_alarm_app/presentation/welcome_screen/custom_welcome_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -51,29 +51,21 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            CustomTextButton(
+            CustomWelcomeButton(
               textButton: "I want to wake up on time",
-              onPressed: () {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (_) {
-                //       return OnboardingScreen();
-                //     },
-                //   ),
-                // );
-              },
+              onPressed: () {},
             ),
             const SizedBox(
               height: 8,
             ),
-            CustomTextButton(
+            CustomWelcomeButton(
               textButton: "I want to build a morning habit",
               onPressed: () {},
             ),
             const SizedBox(
               height: 8,
             ),
-            CustomTextButton(
+            CustomWelcomeButton(
               textButton: "I want to start my day early",
               onPressed: () {},
             ),

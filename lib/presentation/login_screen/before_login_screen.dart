@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_alarm_app/presentation/login_screen/custom_login_button.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
 class BeforeLogin extends StatelessWidget {
@@ -50,6 +51,30 @@ class BeforeLogin extends StatelessWidget {
             ),
             const SizedBox(
               height: 80,
+            ),
+            Container(
+              height: 56,
+              width: 328,
+              decoration: BoxDecoration(
+                color: AppColor.grayColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  CustomLoginButton(
+                    textButton: "Signin",
+                    onPressed: () {},
+                    colorButton1: AppColor.lightPurple,
+                    colorButton2: AppColor.darkPurple,
+                  ),
+                  CustomLoginButton(
+                    textButton: "Signup",
+                    onPressed: () {},
+                    colorButton1: AppColor.grayColor,
+                    colorButton2: AppColor.grayColor,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

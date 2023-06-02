@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
-class CustomTextButton extends StatelessWidget {
+class CustomWelcomeButton extends StatelessWidget {
   final String textButton;
   final VoidCallback onPressed;
-  const CustomTextButton({
-    super.key, required this.textButton, required this.onPressed,
+  const CustomWelcomeButton({
+    super.key,
+    required this.textButton,
+    required this.onPressed,
   });
 
   @override

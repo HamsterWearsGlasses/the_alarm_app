@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:the_alarm_app/presentation/login_screen/login_screen.dart';
+import 'package:the_alarm_app/presentation/login_screen/before_login_screen.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) {
-            return const LoginScreen();
+            return const BeforeLogin();
           },
         ),
       );
