@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 16,
                 ),
-                Container(
+                SizedBox(
                   width: 328,
                   child: Text(
                     "Recover Password?",
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) {
-                          return WelcomeScreen();
+                          return const WelcomeScreen();
                         },
                       ),
                     );
