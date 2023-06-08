@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:the_alarm_app/presentation/login_screen/custom_login_button.dart';
+import 'package:the_alarm_app/presentation/login_screen/auth_screen.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
 class BeforeLogin extends StatelessWidget {
@@ -7,37 +9,45 @@ class BeforeLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColor.backgroundColor,
+        body: Column(
           children: [
-            const SizedBox(
-              height: 56,
-            ),
             SizedBox(
-              height: 340,
-              width: 343,
+              height: 56.h,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
               child: Image.asset(
                 "assets/images/sun.png",
+                fit: BoxFit.cover,
+                height: 340.h,
+                width: 343.w,
               ),
             ),
-            const SizedBox(
-              height: 72,
+            SizedBox(
+              height: 72.h,
             ),
-            Text(
-              "Let’s get connected to wakey for healthy lifestyle",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "Oxygen",
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: AppColor.textColor,
+            SizedBox(
+              height: 60.h,
+              width: 343.w,
+              child: Text(
+                "Let’s get connected to wakey for healthy lifestyle",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Oxygen",
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.textColor,
+                ),
               ),
             ),
-            const SizedBox(
-              height: 32,
+            SizedBox(
+              height: 32.h,
             ),
             Text(
               "Explore the most elegant way of achieving your morning routine let’s build a healthy life.",
@@ -49,12 +59,12 @@ class BeforeLogin extends StatelessWidget {
                 color: AppColor.textColor,
               ),
             ),
-            const SizedBox(
-              height: 80,
+            SizedBox(
+              height: 80.h,
             ),
             Container(
-              height: 56,
-              width: 328,
+              height: 56.h,
+              width: 343.w,
               decoration: BoxDecoration(
                 color: AppColor.grayColor,
                 borderRadius: BorderRadius.circular(8),
@@ -63,13 +73,33 @@ class BeforeLogin extends StatelessWidget {
                 children: [
                   CustomLoginButton(
                     textButton: "Signin",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (builder) {
+                            return const AuthScreen(
+                              authScreenMethod: AuthScreenMethod.login,
+                            );
+                          },
+                        ),
+                      );
+                    },
                     colorButton1: AppColor.lightPurple,
                     colorButton2: AppColor.darkPurple,
                   ),
                   CustomLoginButton(
                     textButton: "Signup",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (builder) {
+                            return const AuthScreen(
+                              authScreenMethod: AuthScreenMethod.register,
+                            );
+                          },
+                        ),
+                      );
+                    },
                     colorButton1: AppColor.grayColor,
                     colorButton2: AppColor.grayColor,
                   ),

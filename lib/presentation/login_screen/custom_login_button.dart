@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomLoginButton extends StatelessWidget {
   final String textButton;
@@ -16,8 +17,8 @@ class CustomLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56,
-      width: 164,
+      height: 56.h,
+      width: 171.5.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
@@ -33,7 +34,7 @@ class CustomLoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(164, 56),
+          fixedSize: Size(171.5.w, 56.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
