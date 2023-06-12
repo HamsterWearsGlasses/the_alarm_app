@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:the_alarm_app/presentation/login_screen/before_login_screen.dart';
+import 'package:the_alarm_app/presentation/onboarding_screen/onboarding_screen.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 import 'package:the_alarm_app/presentation/welcome_screen/custom_welcome_button.dart';
 
@@ -63,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (_) {
-                        return const BeforeLogin();
+                        return const OnboardingSreen();
                       },
                     ),
                   );
@@ -78,7 +78,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (_) {
-                        return const BeforeLogin();
+                        return const OnboardingSreen();
                       },
                     ),
                   );
@@ -93,7 +93,7 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (_) {
-                        return const BeforeLogin();
+                        return const OnboardingSreen();
                       },
                     ),
                   );

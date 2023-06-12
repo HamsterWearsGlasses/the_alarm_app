@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:the_alarm_app/presentation/login_screen/custom_login_button.dart';
-import 'package:the_alarm_app/presentation/login_screen/auth_screen.dart';
+import 'package:the_alarm_app/presentation/auth_screen/custom_login_button.dart';
+import 'package:the_alarm_app/presentation/auth_screen/auth_screen.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
 
 class BeforeLogin extends StatelessWidget {

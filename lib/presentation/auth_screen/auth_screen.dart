@@ -1,11 +1,17 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:the_alarm_app/common/custom_button.dart';
 import 'package:the_alarm_app/common/custom_field.dart';
 import 'package:the_alarm_app/common/custom_text_button.dart';
 import 'package:the_alarm_app/common/custom_widget.dart';
+import 'package:the_alarm_app/presentation/home_screen/home_screen.dart';
 import 'package:the_alarm_app/presentation/theme/color.dart';
-import 'package:the_alarm_app/presentation/welcome_screen/welcome_screen.dart';
+import 'package:the_alarm_app/repo/model/user_model.dart';
+import 'package:the_alarm_app/repo/repo.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum AuthScreenMethod {
   login,
@@ -151,32 +157,46 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   CustomButton(
                     textButton: isLogin ? "Signin" : "Signup",
-                    onPressed: () {
+                    onPressed: () async {
                       switch (widget.authScreenMethod) {
                         case AuthScreenMethod.login:
+                          bool? isPassed = false;
 
                           /// REGEX
                           if (usernameController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty) {
-                            // TODO: call check account and login
+                            final localUser =
+                                await context.read<Repo>().login();
+                            if (localUser ==
+                                UserModel(
+                                  userName: usernameController.text,
+                                  password: passwordController.text,
+                                )) {
+                              isPassed = true;
+                            }
+                          }
+                          if (mounted && isPassed == true) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (_) {
-                                  return const WelcomeScreen();
+                                  return const HomeScreen();
                                 },
                               ),
                             );
                           } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                                    backgroundColor: Colors.purple,
-                                    padding: EdgeInsets.all(16),
-                                    duration: Duration(seconds: 2),
-                                    content: Padding(
-                                      padding: EdgeInsets.all(12.0),
-                                      child:
-                                          Center(child: Text("Wrong format")),
-                                    )));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.purple,
+                                padding: EdgeInsets.all(16),
+                                duration: Duration(seconds: 2),
+                                content: Padding(
+                                  padding: EdgeInsets.all(12.0),
+                                  child: Center(
+                                    child: Text("Wrong format"),
+                                  ),
+                                ),
+                              ),
+                            );
                           }
 
                           break;
@@ -185,28 +205,37 @@ class _AuthScreenState extends State<AuthScreen> {
                           /// REGEX
                           if (usernameController.text.isNotEmpty &&
                               passwordController.text.isNotEmpty) {
-                            // TODO: check if new account, then:
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (_) {
-                                  return const AuthScreen(
-                                    authScreenMethod: AuthScreenMethod.login,
-                                  );
-                                },
+                            await context.read<Repo>().register(
+                                  UserModel(
+                                    userName: usernameController.text,
+                                    password: passwordController.text,
+                                  ),
+                                );
+                            if (mounted) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) {
+                                    return const AuthScreen(
+                                      authScreenMethod: AuthScreenMethod.login,
+                                    );
+                                  },
+                                ),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.purple,
+                                padding: EdgeInsets.all(16),
+                                duration: Duration(seconds: 2),
+                                content: Padding(
+                                  padding: EdgeInsets.all(12.0),
+                                  child: Center(
+                                    child: Text("Invalid username or password"),
+                                  ),
+                                ),
                               ),
                             );
-                          } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                                    backgroundColor: Colors.purple,
-                                    padding: EdgeInsets.all(16),
-                                    duration: Duration(seconds: 2),
-                                    content: Padding(
-                                      padding: EdgeInsets.all(12.0),
-                                      child: Center(
-                                          child: Text(
-                                              "Invalid username or password")),
-                                    )));
                           }
 
                           break;
@@ -259,9 +288,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         onPressed: () {},
                       ),
                       CustomWidget(
-                        assetsLogo: "assets/images/logo_google.svg",
-                        onPressed: () {},
-                      ),
+                          assetsLogo: "assets/images/logo_google.svg",
+                          onPressed: () {}),
                       CustomWidget(
                         assetsLogo: "assets/images/logo_facebook.svg",
                         onPressed: () {},
